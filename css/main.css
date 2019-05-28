@@ -1,0 +1,14 @@
+body {
+    display: flex;
+}
+
+#game-container {
+    display: inline-block;
+    margin: auto;
+}
+
+#game {
+    border: #aaa dashed 1px;
+    border-radius: 5px;
+    background: #eee;
+}
