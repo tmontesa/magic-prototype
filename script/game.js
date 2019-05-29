@@ -66,7 +66,6 @@ var bullets = [];
 function main() {
     game_update();
     game_render();
-    console.log(mouse);
 }
 
 setInterval(main, 24);

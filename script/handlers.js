@@ -26,15 +26,19 @@ function handlerMousePosition(e) {
 function handlerKeyDown(e) {
 	switch(e.keyCode) {
 		case 37:
+		case 65:
 			key.LEFT	= true;
 			break;
 		case 38:
+		case 87:
 			key.UP 	    = true;
 			break;
 		case 39:
+		case 68:
 			key.RIGHT 	= true;
 			break;
 		case 40:
+		case 83:
             key.DOWN  	= true;
 			break;
 		case 32:
@@ -48,15 +52,19 @@ function handlerKeyDown(e) {
 function handlerKeyUp(e) {
 	switch(e.keyCode) {
 		case 37:
+		case 65:
 			key.LEFT	= false;
 			break;
 		case 38:
+		case 87:
 			key.UP 	    = false;
 			break;
 		case 39:
+		case 68:
 			key.RIGHT 	= false;
 			break;
 		case 40:
+		case 83:
             key.DOWN  	= false;
 			break;
 		case 32:
