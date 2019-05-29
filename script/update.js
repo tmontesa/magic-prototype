@@ -9,6 +9,8 @@ function game_update_player_movement() {
 
     player.x += player.vx;
     player.y += player.vy;
+    player.xm = player.x + player.w/2;
+    player.ym = player.y + player.h/2;
     player.x2 = player.x + player.w;
     player.y2 = player.y + player.h;
 }

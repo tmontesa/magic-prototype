@@ -1,3 +1,13 @@
+var canvas_offset_x = 0;
+var canvas_offset_y = 0;
+
+var mouse = {
+	X:	0,
+	Y: 	0,
+	ABS_X: 0,
+	ABS_Y: 0
+};
+
 var key = {
     UP:     false,
     DOWN:   false,
@@ -6,8 +16,12 @@ var key = {
     SPACE:  false
 };
 
-document.addEventListener("keydown", handlerKeyDown, false);
-document.addEventListener("keyup", handlerKeyUp, false);
+function handlerMousePosition(e) {
+	mouse.X = e.clientX - canvas_offset_x;
+	mouse.Y = e.clientY - canvas_offset_y;
+	mouse.ABS_X = e.clientX;
+	mouse.ABS_Y = e.clientY;
+}
 
 function handlerKeyDown(e) {
 	switch(e.keyCode) {
@@ -52,4 +66,6 @@ function handlerKeyUp(e) {
             break;
 	}
 }
+
+
 
