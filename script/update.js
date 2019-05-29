@@ -23,7 +23,7 @@ function game_update_bullet_spawn() {
     var l  = Math.sqrt(dx * dx + dy * dy);
 
     bullets.push(new Bullet(4, 4, player.xm, player.ym,
-        dx/l * 16, dy/l * 16
+        dx/l * 32, dy/l * 32
     ));
 }
 
