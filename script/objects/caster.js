@@ -2,11 +2,12 @@
 // Caster Object
 //
 
-function Caster(level, caster_type, casterpart_set,
+function Caster(level, rarity, caster_type, casterpart_set,
     damage, firerate, accuracy, reloadspeed, magazinesize) {
 
-    this.caster_type = caster_type;
     this.level = level;
+    this.rarity = rarity;
+    this.caster_type = caster_type;
     this.casterparts = casterpart_set;
 
     this.damage         = damage;
@@ -66,8 +67,9 @@ CASTERBASES[CASTER_TYPE.KABOOMER] =
 // level, caster_type, casterpart_set, damage, firerate, accuracy, reloadspeed, magazinesize
 function generate_caster(level) {
     var caster_type     = random_int(0, CASTER_TYPE_COUNT);
+    var rarity          = generate_rarity();
     var casterpart_set  = generate_casterpart_set();
-    var damage          = (CASTERBASES[caster_type].base_damage * level);
+    var damage          = (CASTERBASES[caster_type].base_damage * level * rarity.modifier);
     var firerate        = CASTERBASES[caster_type].base_firerate;
     var accuracy        = CASTERBASES[caster_type].base_accuracy;
     var reloadspeed     = CASTERBASES[caster_type].base_reloadspeed;
@@ -87,6 +89,6 @@ function generate_caster(level) {
     reloadspeed = parseFloat(contain_number(reloadspeed, 0.05, 100).toFixed(2));
     magazinesize = Math.floor(contain_number(magazinesize, 1, 999));
 
-    return new Caster(level, caster_type, casterpart_set,
+    return new Caster(level, rarity, caster_type, casterpart_set,
         damage, firerate, accuracy, reloadspeed, magazinesize);
 }
