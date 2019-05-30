@@ -12,6 +12,7 @@ function Rarity(rarity_type, modifier, chance, name, color) {
 
 //
 // Rarity Pool
+//
 
 const RARITY_TYPE_COUNT = 8;
 const RARITY_TYPE = {

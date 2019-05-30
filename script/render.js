@@ -5,11 +5,11 @@ function game_render_player() {
     ctx.closePath();
 }
 
-function game_render_bullets() {
-    for (var i = 0; i < bullets.length; i++) {
+function game_render_projectiles() {
+    for (var i = 0; i < projectiles.length; i++) {
         ctx.beginPath();
         ctx.fillStyle = 'blue';
-        ctx.fillRect(bullets[i].x, bullets[i].y, bullets[i].w, bullets[i].h);
+        ctx.fillRect(projectiles[i].x, projectiles[i].y, projectiles[i].w, projectiles[i].h);
         ctx.closePath();
     }    
 }
@@ -21,5 +21,5 @@ function game_render_bullets() {
 function game_render() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     game_render_player();
-    game_render_bullets();
+    game_render_projectiles();
 }

@@ -15,22 +15,31 @@ function game_update_player_movement() {
     player.y2 = player.y + player.h;
 }
 
-function game_update_bullet_spawn() {
+function game_update_projectile_spawn() {
+    player.projectile_cooldown--;
+
     if (!key.SPACE) { return; }
+    if (player.projectile_cooldown > 0) { return; }
 
     var dx = mouse.X - player.xm;
     var dy = mouse.Y - player.ym;
     var l  = Math.sqrt(dx * dx + dy * dy);
 
-    bullets.push(new Bullet(4, 4, player.xm, player.ym,
-        dx/l * 32, dy/l * 32
-    ));
+    dx = (dx/l * 32) + (random_int(-16,16) * (1 - player.equip[player.current_equip].accuracy));
+    dy = (dy/l * 32) + (random_int(-16,16) * (1 - player.equip[player.current_equip].accuracy));
+
+    projectiles.push(new Projectile(4, 4, player.xm, player.ym,
+        dx, dy, player.equip[player.current_equip].damage));
+
+    // TODO: Porjectiles are (not supposed to be) steering to the top-right, adjust formula.
+
+    player.projectile_cooldown = player.base_projectile_cooldown / player.equip[player.current_equip].firerate;
 }
 
-function game_update_bullet_movement() {
-    for (var i = 0; i < bullets.length;  i++) {
-        bullets[i].x += bullets[i].vx;
-        bullets[i].y += bullets[i].vy;
+function game_update_projectile_movement() {
+    for (var i = 0; i < projectiles.length;  i++) {
+        projectiles[i].x += projectiles[i].vx;
+        projectiles[i].y += projectiles[i].vy;
     }
 }
 
@@ -40,6 +49,6 @@ function game_update_bullet_movement() {
 
 function game_update() {
     game_update_player_movement();
-    game_update_bullet_spawn();
-    game_update_bullet_movement();
+    game_update_projectile_spawn();
+    game_update_projectile_movement();
 }
