@@ -15,11 +15,31 @@ function game_update_player_movement() {
     player.y2 = player.y + player.h;
 }
 
-function game_update_projectile_spawn() {
-    player.projectile_cooldown--;
+function game_update_player_reload() {
+    if (player.magazine <= 0 && !player.reloading) {
+        player.reloading = true;
+        player.reload_cooldown = 50 / player.equip[player.current_equip].reloadspeed;
+    }
 
+    if (player.reloading && player.reload_cooldown <= 0) {
+        player.reloading = false;
+        player.magazine = player.equip[player.current_equip].magazinesize;
+    }
+
+    if (player.reloading) {
+        player.reload_cooldown--;
+    }
+    
+}
+
+function game_update_projectile_spawn() {
+    if (player.projectile_cooldown > 0) {
+        player.projectile_cooldown--;
+    }
+    
     if (!key.SPACE) { return; }
     if (player.projectile_cooldown > 0) { return; }
+    if (player.reloading) { return; }
 
     var dx = mouse.X - player.xm;
     var dy = mouse.Y - player.ym;
@@ -34,6 +54,7 @@ function game_update_projectile_spawn() {
     // TODO: Porjectiles are (not supposed to be) steering to the top-right, adjust formula.
 
     player.projectile_cooldown = player.base_projectile_cooldown / player.equip[player.current_equip].firerate;
+    player.magazine--;
 }
 
 function game_update_projectile_movement() {
@@ -49,6 +70,7 @@ function game_update_projectile_movement() {
 
 function game_update() {
     game_update_player_movement();
+    game_update_player_reload();
     game_update_projectile_spawn();
     game_update_projectile_movement();
 }

@@ -18,6 +18,7 @@ document.addEventListener("mousemove", handlerMousePosition, false);
 var player = new Player();
 var projectiles = [];
 player.equip[0] = generate_caster(player.level);
+player.magazine = player.equip[0].magazinesize;
 console.log(player.equip[0]);
 
 // 
@@ -27,6 +28,7 @@ console.log(player.equip[0]);
 function main() {
     game_update();
     game_render();
+    if (DEBUG) { debug(); }
 }
 
 setInterval(main, 24);

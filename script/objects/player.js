@@ -24,6 +24,11 @@ function Player() {
     this.projectile_cooldown = 0;
     this.base_projectile_cooldown = 10;
 
+    // Reloading.
+    this.reloading = false;
+    this.reload_cooldown = 0;
+    this.magazine = 0;
+
     // Equip slots.
     this.equip = new Array(4);
     this.current_equip = 0;
