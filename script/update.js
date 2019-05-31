@@ -37,7 +37,7 @@ function game_update_projectile_spawn() {
         player.projectile_cooldown--;
     }
     
-    if (!key.SPACE) { return; }
+    if (!key.MOUSE_1) { return; }
     if (player.projectile_cooldown > 0) { return; }
     if (player.reloading) { return; }
 

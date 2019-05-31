@@ -10,9 +10,12 @@ console.log("Good to go!");
 // Add event listeners for key/mouse presses and mouse location.
 canvas_offset_x = canvas.getBoundingClientRect().left;
 canvas_offset_y = canvas.getBoundingClientRect().top;
+document.addEventListener("mousemove", handlerMousePosition, false);
+document.addEventListener("mousedown", handlerMouseDown, false);
+document.addEventListener("mouseup", handlerMouseUp, false);
 document.addEventListener("keydown", handlerKeyDown, false);
 document.addEventListener("keyup", handlerKeyUp, false);
-document.addEventListener("mousemove", handlerMousePosition, false);
+
 
 // Instances of objects.
 var player = new Player();

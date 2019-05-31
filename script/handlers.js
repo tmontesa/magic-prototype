@@ -5,15 +5,18 @@ var mouse = {
 	X:	0,
 	Y: 	0,
 	ABS_X: 0,
-	ABS_Y: 0
+	ABS_Y: 0,
 };
 
 var key = {
-    UP:     false,
-    DOWN:   false,
-    LEFT:   false,
-    RIGHT:  false,
-    SPACE:  false
+	MOUSE_1:	false,
+	MOUSE_2:	false,
+	MOUSE_3:	false,
+    UP:     	false,
+    DOWN:   	false,
+    LEFT:   	false,
+    RIGHT:  	false,
+    SPACE:  	false
 };
 
 function handlerMousePosition(e) {
@@ -21,6 +24,38 @@ function handlerMousePosition(e) {
 	mouse.Y = e.clientY - canvas_offset_y;
 	mouse.ABS_X = e.clientX;
 	mouse.ABS_Y = e.clientY;
+}
+
+function handlerMouseDown(e) {
+	switch(e.button) {
+		case 0:
+			key.MOUSE_1 = true;
+			break;
+		case 2:
+			key.MOUSE_2 = true;
+			break;
+		case 1:
+			key.MOUSE_3 = true;
+			break;
+		default:
+			break;
+	}
+}
+
+function handlerMouseUp(e) {
+	switch(e.button) {
+		case 0:
+			key.MOUSE_1 = false;
+			break;
+		case 2:
+			key.MOUSE_2 = false;
+			break;
+		case 1:
+			key.MOUSE_3 = false;
+			break;
+		default:
+			break;
+	}
 }
 
 function handlerKeyDown(e) {
