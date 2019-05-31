@@ -42,17 +42,25 @@ const CASTER_TYPE = {
     "KABOOMER":     4
 }
 
+const CASTER_TYPE_NAME = {
+    0: "Pewpew",
+    1: "Ratatat",
+    2: "Dertdert",
+    3: "Blamblam",
+    4: "Kaboomer"
+}
+
 var CASTERBASES = new Array(CASTER_TYPE_COUNT);
 // caster_type, base_damage, base_firerate, base_accuracy, base_reloadspeed, base_magazinesize
 
 CASTERBASES[CASTER_TYPE.PEWPEW] = 
-    new CasterBase(CASTER_TYPE.PEWPEW, 10, 0.90, 0.90, 1, 10);
+    new CasterBase(CASTER_TYPE.PEWPEW, 10, 0.85, 0.90, 1.15, 6);
 
 CASTERBASES[CASTER_TYPE.RATATAT] = 
-    new CasterBase(CASTER_TYPE.RATATAT, 5, 1.75, 0.85, 0.85, 30);
+    new CasterBase(CASTER_TYPE.RATATAT, 5, 1.75, 0.85, 0.85, 35);
 
 CASTERBASES[CASTER_TYPE.DERTDERT] = 
-    new CasterBase(CASTER_TYPE.DERTDERT, 3, 3.00, 0.80, 0.90, 20);
+    new CasterBase(CASTER_TYPE.DERTDERT, 3, 3.00, 0.80, 0.95, 20);
 
 CASTERBASES[CASTER_TYPE.BLAMBLAM] = 
     new CasterBase(CASTER_TYPE.BLAMBLAM, 30, 0.70, 0.70, 0.80, 6);

@@ -17,7 +17,7 @@ function Player() {
     this.vy = 0;
 
     // Level and experience.
-    this.level = 1;
+    this.level = random_int(1,100);
     this.experience = 0;
 
     // Projectile fire rate timing.
