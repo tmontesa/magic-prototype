@@ -53,10 +53,27 @@ function debug_player_information() {
     ctx.closePath();    
 }
 
+function debug_enemy_information() {
+    ctx.beginPath();
+    ctx.textAlign = "center";
+    ctx.textBaseline = "bottom";
+    ctx.fillStyle = "#f00";
+
+    for (var i = 0; i < enemies.length; i++) {
+        ctx.beginPath();
+        ctx.fillText(enemies[i].health + "/" + enemies[i].max_health,
+            enemies[i].x + (enemies[i].w/2), enemies[i].y - debug_padding);
+        ctx.closePath();
+    }    
+
+    ctx.closePath();
+}
+
 //
 // Main
 //
 
 function debug() {
     debug_player_information();
+    debug_enemy_information();
 }

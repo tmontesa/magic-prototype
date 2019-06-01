@@ -14,6 +14,15 @@ function game_render_projectiles() {
     }    
 }
 
+function game_render_enemies() {
+    for (var i = 0; i < enemies.length; i++) {
+        ctx.beginPath();
+        ctx.fillStyle = 'green';
+        ctx.fillRect(enemies[i].x, enemies[i].y, enemies[i].w, enemies[i].h);
+        ctx.closePath();
+    }        
+}
+
 //
 // Main Render
 //
@@ -22,4 +31,5 @@ function game_render() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     game_render_player();
     game_render_projectiles();
+    game_render_enemies();
 }

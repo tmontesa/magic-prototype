@@ -19,10 +19,16 @@ document.addEventListener("keyup", handlerKeyUp, false);
 
 // Instances of objects.
 var player = new Player();
+
 var projectiles = [];
 player.equip[0] = generate_caster(player.level);
 player.magazine = player.equip[0].magazinesize;
 console.log(player.equip[0]);
+
+var enemies = [];
+for (var i = 0; i < 8; i++) {
+    enemies.push(generate_enemy());
+}
 
 // 
 // Main
