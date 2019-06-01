@@ -12,10 +12,10 @@ function Enemy(w, h, x, y, max_health) {
 
 function generate_enemy() {
     return new Enemy(
-        random_int(16, 32),
-        random_int(16, 32),
+        random_int(16, 64),
+        random_int(16, 64),
         random_int(0, canvas.width),
         random_int(0, canvas.height),
-        random_int(50, 500)
+        random_int(50, 1000)
     )
 }

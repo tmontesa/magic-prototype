@@ -16,7 +16,8 @@ function game_update_player_movement() {
 }
 
 function game_update_player_reload() {
-    if (player.magazine <= 0 && !player.reloading) {
+    if ((player.magazine <= 0 && !player.reloading) || key.R) {
+        player.magazine = 0;
         player.reloading = true;
         player.reload_cooldown = 50 / player.equip[player.current_equip].reloadspeed;
     }
@@ -54,6 +55,7 @@ function game_update_projectile_spawn() {
 
     player.projectile_cooldown = player.base_projectile_cooldown / player.equip[player.current_equip].firerate;
     player.magazine--;
+    AUDIO.SHOT.cloneNode().play();
 }
 
 function game_update_projectile_movement() {
@@ -71,6 +73,7 @@ function game_update_projectile_collision() {
                     enemies[e].health -= projectiles[p].damage;
                     if (enemies[e].health <= 0) {
                         enemies.splice(e, 1);
+                        AUDIO.ENEMY_DEATH.cloneNode().play();
                     }
                     projectiles.splice(p, 1);
                 }

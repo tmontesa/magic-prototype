@@ -16,7 +16,8 @@ var key = {
     DOWN:   	false,
     LEFT:   	false,
     RIGHT:  	false,
-    SPACE:  	false
+	SPACE:  	false,
+	R:			false
 };
 
 function handlerMousePosition(e) {
@@ -79,6 +80,9 @@ function handlerKeyDown(e) {
 		case 32:
 			key.SPACE   = true;
 			break;
+		case 82:
+			key.R		= true;
+			break;
         default:
             break;
     }
@@ -104,6 +108,9 @@ function handlerKeyUp(e) {
 			break;
 		case 32:
 			key.SPACE   = false;
+			break;
+		case 82:
+			key.R		= false;
 			break;
         default:
             break;
