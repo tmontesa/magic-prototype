@@ -17,6 +17,10 @@ var key = {
     LEFT:   	false,
     RIGHT:  	false,
 	SPACE:  	false,
+	NUM_1:		false,
+	NUM_2:		false,
+	NUM_3:		false,
+	NUM_4:		false,
 	R:			false
 };
 
@@ -80,6 +84,20 @@ function handlerKeyDown(e) {
 		case 32:
 			key.SPACE   = true;
 			break;
+
+		case 49:
+			key.NUM_1	= true;
+			break;
+		case 50:
+			key.NUM_2	= true;
+			break;
+		case 51:
+			key.NUM_3	= true;
+			break;
+		case 52:
+			key.NUM_4	= true;
+			break;
+
 		case 82:
 			key.R		= true;
 			break;
@@ -109,6 +127,20 @@ function handlerKeyUp(e) {
 		case 32:
 			key.SPACE   = false;
 			break;
+
+		case 49:
+			key.NUM_1	= false;
+			break;
+		case 50:
+			key.NUM_2	= false;
+			break;
+		case 51:
+			key.NUM_3	= false;
+			break;
+		case 52:
+			key.NUM_4	= false;
+			break;
+		
 		case 82:
 			key.R		= false;
 			break;

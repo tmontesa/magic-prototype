@@ -21,14 +21,17 @@ document.addEventListener("keyup", handlerKeyUp, false);
 var player = new Player();
 
 var projectiles = [];
-player.equip[0] = generate_caster(player.level);
-player.magazine = player.equip[0].magazinesize;
-console.log(player.equip[0]);
 
 var enemies = [];
 for (var i = 0; i < 8; i++) {
     enemies.push(generate_enemy());
 }
+
+player.equip[0] = generate_caster(player.level);
+player.equip[1] = generate_caster(player.level);
+player.equip[2] = generate_caster(player.level);
+player.equip[3] = generate_caster(player.level);
+player.current_equip = player.equip[0];
 
 // 
 // Main

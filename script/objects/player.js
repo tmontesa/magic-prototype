@@ -29,9 +29,14 @@ function Player() {
     this.reload_cooldown = 0;
     this.magazine = 0;
 
+    // Weapon swap speed.
+    this.weaponswap_cooldown = 0;
+    this.base_weaponswap_cooldown = 25;
+
     // Equip slots.
     this.equip = new Array(4);
-    this.current_equip = 0;
+    this.current_equip = this.equip[0];
+    this.current_equip_index = 0;
 
     // Inventory.
     this.max_inventory_slots = 16;

@@ -10,6 +10,8 @@ function Caster(level, rarity, caster_type, casterpart_set,
     this.caster_type = caster_type;
     this.casterparts = casterpart_set;
 
+    this.magazine = magazinesize;
+
     this.damage         = damage;
     this.firerate       = firerate;
     this.accuracy       = accuracy;

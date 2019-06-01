@@ -15,16 +15,36 @@ function game_update_player_movement() {
     player.y2 = player.y + player.h;
 }
 
+function game_update_player_weaponswap() {
+
+    if (player.weaponswap_cooldown > 0) {
+        player.weaponswap_cooldown--;
+    }
+
+    var swapping_to_index;
+    if (key.NUM_1) { swapping_to_index = 0; }
+    if (key.NUM_2) { swapping_to_index = 1; }
+    if (key.NUM_3) { swapping_to_index = 2; }
+    if (key.NUM_4) { swapping_to_index = 3; }
+
+    if (swapping_to_index == null || player.current_equip_index == swapping_to_index) { return; }
+
+    player.weaponswap_cooldown = player.base_weaponswap_cooldown;
+    player.projectile_cooldown = 0;
+    player.current_equip = player.equip[swapping_to_index];
+    player.current_equip_index = swapping_to_index;
+}
+
 function game_update_player_reload() {
-    if ((player.magazine <= 0 && !player.reloading) || key.R) {
-        player.magazine = 0;
+    if ((player.current_equip.magazine <= 0 && !player.reloading) || key.R) {
+        player.current_equip.magazine = 0;
         player.reloading = true;
-        player.reload_cooldown = 50 / player.equip[player.current_equip].reloadspeed;
+        player.reload_cooldown = 50 / player.current_equip.reloadspeed;
     }
 
     if (player.reloading && player.reload_cooldown <= 0) {
         player.reloading = false;
-        player.magazine = player.equip[player.current_equip].magazinesize;
+        player.current_equip.magazine = player.current_equip.magazinesize;
     }
 
     if (player.reloading) {
@@ -41,20 +61,21 @@ function game_update_projectile_spawn() {
     if (!key.MOUSE_1) { return; }
     if (player.projectile_cooldown > 0) { return; }
     if (player.reloading) { return; }
+    if (player.weaponswap_cooldown > 0) { return; }
 
     var dx = mouse.X - player.xm;
     var dy = mouse.Y - player.ym;
     var l  = Math.sqrt(dx * dx + dy * dy);
-    var spread = ((random_int(0,32) - 16) * (1 - player.equip[player.current_equip].accuracy));
+    var spread = ((random_int(0,32) - 16) * (1 - player.current_equip.accuracy));
 
     dx = (dx/l * 32) + spread;
     dy = (dy/l * 32) + spread;
 
     projectiles.push(new Projectile(8, 8, player.xm, player.ym,
-        dx, dy, player.equip[player.current_equip].damage));
+        dx, dy, player.current_equip.damage));
 
-    player.projectile_cooldown = player.base_projectile_cooldown / player.equip[player.current_equip].firerate;
-    player.magazine--;
+    player.projectile_cooldown = player.base_projectile_cooldown / player.current_equip.firerate;
+    player.current_equip.magazine--;
     AUDIO.SHOT.cloneNode().play();
 }
 
@@ -87,6 +108,7 @@ function game_update_projectile_collision() {
 
 function game_update() {
     game_update_player_movement();
+    game_update_player_weaponswap();
     game_update_player_reload();
     game_update_projectile_spawn();
     game_update_projectile_movement();
