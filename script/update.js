@@ -44,9 +44,10 @@ function game_update_projectile_spawn() {
     var dx = mouse.X - player.xm;
     var dy = mouse.Y - player.ym;
     var l  = Math.sqrt(dx * dx + dy * dy);
+    var spread = ((random_int(0,32) - 16) * (1 - player.equip[player.current_equip].accuracy));
 
-    dx = (dx/l * 32) + (random_int(-16,16) * (1 - player.equip[player.current_equip].accuracy));
-    dy = (dy/l * 32) + (random_int(-16,16) * (1 - player.equip[player.current_equip].accuracy));
+    dx = (dx/l * 32) + spread;
+    dy = (dy/l * 32) + spread;
 
     projectiles.push(new Projectile(4, 4, player.xm, player.ym,
         dx, dy, player.equip[player.current_equip].damage));
